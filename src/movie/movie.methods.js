@@ -11,3 +11,32 @@ exports.addMovie = async (movieObj) => {
         console.log(error)
     }
 };
+
+exports.listMovie = async () => {
+    try {
+        console.log(await Movie.find({}));
+        mongoose.disconnect();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.deleteMovie = async () => {
+    try {
+        await Movie.deleteOne({});
+        console.log("successfully deleted movie");
+        mongoose.disconnect();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.updateMovie = async (movieObj) => {
+    try {
+        await Movie.updateOne({title: movieObj.title}, { $set: {actor: movieObj.actor}});
+        console.log("successfully updated movie");
+        mongoose.disconnect();
+    } catch (error) {
+        console.log(error)
+    }
+}
