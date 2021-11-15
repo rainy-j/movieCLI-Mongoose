@@ -1,19 +1,44 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = require("../db/connection");
 
-const movieSchema = new mongoose.Schema({
+// const movieSchema = new mongoose.Schema({
+//     title: {
+//         type: String,
+//         unique: true,
+//         required: true
+//     },
+//     actor: {
+//         type: String,
+//         unique: false,
+//         required: false
+//     },
+    
+// });
+
+// const Movie = mongoose.model("Movie", movieSchema);
+
+const Movie = sequelize.define("Movie", {
     title: {
-        type: String,
-        unique: true,
-        required: true
+        type: DataTypes.STRING, 
+        allowNull: false,
     },
     actor: {
-        type: String,
-        unique: false,
-        required: false
-    },
-    
+        type: DataTypes.STRING,
+    }
 });
 
-const Movie = mongoose.model("Movie", movieSchema);
+const Genre = sequelize.define("Genre", {
+    title: {
+        type: DataTypes.STRING, 
+        allowNull: false,
+    },
+    genre: {
+        type: DataTypes.STRING,
+    }
+})
 
-module.exports = Movie;
+
+module.exports = {
+    Movie, Genre
+};
